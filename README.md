@@ -1,23 +1,30 @@
-## Example Summary
+# PacSat SPI to I2C Converter Sysconfig
 
-Empty project using DriverLib.
-This example shows a basic empty project using DriverLib with just main file
-and SysConfig initialization.
+This repository holds the sysconfig configuration of the PacSat SPI to
+I2C converter processor, also known as the Antenna Control Processor.
 
-## Peripherals & Pin Assignments
+This does not hold the actual software.  Instead, it holds the
+sysconfig that is used to program the NONMAIN (NONCONFIG) FLASH memory
+in the processor.  The software to run on this is in the PacSatPII2C
+repository.
 
-- N/A
+You *MUST* program this first before programming the actual software.
 
-## BoosterPacks, Board Resources & Jumper Settings
+## Programming The Config
 
-- N/A
+You program this normally with TI Code Composer Studio, but you must
+change a setting.  CCS will not program the NONMAIN memory by default,
+you will get an error about not erasing the NONCONFIG memory.
 
+In TI CCS you must to go to Project->Executable Actions->Manage then
+go to the Debug section, choose "MSPM0 Flash Settings," then choose
+"Erase MAIN and NONMAIN necessary sectors only".  Then reset the
+M0L1228 with the reset button on the launchpad XDS110 and it program
+it.
 
-### Device Migration Recommendations
-This project was developed for a superset device included in the LP_MSPM0L2228 LaunchPad. Please
-visit the [CCS User's Guide](https://software-dl.ti.com/msp430/esd/MSPM0-SDK/latest/docs/english/tools/ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide.html#non-sysconfig-compatible-project-migration)
-for information about migrating to other MSPM0 devices.
+## The Sysconfig Itself
 
-## Example Usage
+The sysconfig in this repository is an accurate representation of the
+configuration of the processor.  This was used to figure out what pins
+to use for what.  Refer to this for details.
 
-Compile, load and run the example.
